@@ -1,0 +1,25 @@
+# behat.yml
+default:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://www.ipgmediabrands.com/
+            goutte: ~
+            selenium2: ~
+    paths:
+        features: features
+        bootstrap: %behat.paths.features%/bootstrap
+    formatter:
+        name:               pretty
+        parameters:
+            output_styles:
+                passed:                       [ white, null]
+                passed_param:                 [ white, green, [ bold ]]
+                undefined:                    [ yellow, null, [ underscore, bold ]]
+                pending:                      [ yellow, null, [ underscore ]]
+                pending_param:                [ yellow, null, [ underscore, bold ]]
+                failed:                       [ red, null ]
+                failed_param:                 [ red, null, [ bold ]]
+                skipped:                      [ orange ]
+                skipped_param:                [ orange, null, [ bold ]]
+                comment:                      [ cyan ]
+                tag:                          [ cyan ]
