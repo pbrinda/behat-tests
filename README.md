@@ -14,14 +14,19 @@ $ cd behat-tests
 $ composer install
 ```
 
+* Copy chromedriver to your local bin path 
+```sh
+$ cp chromedriver /usr/local/bin/
+```
+
 ## How to Run the tests
 * Open terminal window and start chrome driver.
 ```sh
-$ ./behat-tests/chromedriver
+$ /usr/local/bin/chromedriver
 ```
-* Open terminal window and start selenium webdriver driver.
+* Open new terminal window and start selenium webdriver driver.
 ```sh
-$ java -jar ./behat-tests/selenium-server-standalone-2.48.2.jar
+$ java -jar behat-tests/selenium-server-standalone-2.48.2.jar -Dwebdriver.chrome.driver="/usr/local/bin/chromedriver"
 ```
 * Open new terminal window and change current working directory to behat-tests.
 ```sh

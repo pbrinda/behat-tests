@@ -5,8 +5,10 @@ default:
             base_url: http://www.ipgmediabrands.com/
             default_session: selenium2
             browser_name: chrome
-            selenium2: 
-            # goutte: ~
+            selenium2:
+                wd_host: "http://127.0.0.1:4444/wd/hub"
+                capabilities: { "browser": "chrome", "version": "*" }
+
     paths:
         features: features
         bootstrap: features/bootstrap
