@@ -3,23 +3,11 @@ default:
     extensions:
         Behat\MinkExtension\Extension:
             base_url: http://www.ipgmediabrands.com/
-            goutte: ~
-            selenium2: ~
+            default_session: selenium2
+            browser_name: chrome
+            selenium2: 
+            # goutte: ~
     paths:
         features: features
-        bootstrap: %behat.paths.features%/bootstrap
-    formatter:
-        name:               pretty
-        parameters:
-            output_styles:
-                passed:                       [ white, null]
-                passed_param:                 [ white, green, [ bold ]]
-                undefined:                    [ yellow, null, [ underscore, bold ]]
-                pending:                      [ yellow, null, [ underscore ]]
-                pending_param:                [ yellow, null, [ underscore, bold ]]
-                failed:                       [ red, null ]
-                failed_param:                 [ red, null, [ bold ]]
-                skipped:                      [ red ]
-                skipped_param:                [ red, null, [ bold ]]
-                comment:                      [ cyan ]
-                tag:                          [ cyan ]
+        bootstrap: features/bootstrap
+    
