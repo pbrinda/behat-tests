@@ -39,7 +39,7 @@ class FeatureContext extends MinkContext
     {
         $session = $this->getSession(); 
         $page = $session->getPage();
-        $element = $page->find('css', '.navbutton');
+        $element = $page->find('css', $arg1);
         if ($element->isVisible()) {
             return;
         } 
@@ -49,6 +49,37 @@ class FeatureContext extends MinkContext
 
         }
 
+    }
+
+    /**
+     * @When /^I click element "([^"]*)"$/
+     */
+    public function clickElement($cssSelector)
+    {
+        $session = $this->getSession(); 
+        $page = $session->getPage();
+        $element = $page->find('css', $cssSelector);
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not find CSS Selector: "%s"', $cssSelector));
+        }
+        $element->click();
+
+    }
+
+    /**
+     * @Then /^I wait for the ajax response$/
+     */
+    public function iWaitForTheAjaxResponse()
+    {
+        $this->getSession()->wait(5000, '(0 === jQuery.active)');
+    }
+
+    /**
+     * @Then /^I wait (\d+) sec$/
+     */
+    public function wait($sec)
+    {
+        sleep($sec);
     }
 
 //
