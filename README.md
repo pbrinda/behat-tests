@@ -19,7 +19,7 @@ $ composer install
 ```sh
 $ cd behat-tests
 ```
-* Open new terminal window and start selenium webdriver driver.
+* Start selenium webdriver and chrome driver.
 ```sh
 $ java -jar selenium-server-standalone-2.48.2.jar -Dwebdriver.chrome.driver="chromedriver"
 ```
