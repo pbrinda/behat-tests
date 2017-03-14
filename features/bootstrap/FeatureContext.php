@@ -115,4 +115,38 @@ class FeatureContext extends MinkContext
     {
         sleep($sec);
     }
+
+    /**
+     * @Given /^the page title should be "([^"]*)"$/
+     */
+    public function thePageTitleShouldBe($expectedTitle)
+    {
+        $titleElement = $this->getSession()->getPage()->find('css', 'head title');
+        if ($titleElement === null) {
+            throw new Exception('Page title element was not found!');
+        } else {
+            $title = $titleElement->getHTML();
+            if ($expectedTitle !== $title) {
+                throw new Exception("Incorrect title! Expected:$expectedTitle | Actual:$title ");
+            }
+        }
+    }
+
+    /**
+     * @When /^I scroll "([^"]*)" into view$/
+     */
+    public function iScrollIntoView($elementId) {
+        $function = <<<JS
+            (function(){
+                var elem = document.getElementById("$elementId");
+                elem.scrollIntoView(false);
+            })()
+JS;
+        try {
+          $this->getSession()->executeScript($function);
+        }
+        catch(Exception $e) {
+          throw new \Exception("ScrollIntoView failed");
+        }
+    }
 }
