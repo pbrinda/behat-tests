@@ -8,10 +8,9 @@ Create tests using behat
 $ git clone https://github.com/pbrinda/behat-tests.git
 $ cd behat-tests
 ```
-* Install Composer by globally following [this article](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
 * Install project dependencies using composer
 ```sh
-$ composer install
+$ ./composer.phar install
 ```
 
 ## How to Run the tests
