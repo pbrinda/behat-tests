@@ -96,8 +96,12 @@ class FeatureContext extends MinkContext
         if (null === $element) {
             throw new \InvalidArgumentException(sprintf('Could not find CSS Selector: "%s"', $cssSelector));
         }
-        $element->click();
-
+        try {
+          $element->click();
+        }
+        catch(Exception $e) {
+          throw new \Exception("Element is not clickable at this point on the page");
+        }
     }
 
     /**
