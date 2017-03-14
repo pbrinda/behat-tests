@@ -52,6 +52,40 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @Then /^"([^"]*)" element contains value "([^"]*)"$/
+     */
+    public function elementContainsValue($path, $value)
+    {
+        $session = $this->getSession(); 
+        $page = $session->getPage();
+        $element = $page->find('css', $path);
+        if ($value === $element->getHTML()) {
+            return;
+        } 
+        else {
+             $message = sprintf('The element "%s" not contain value: "%s"', $path, $value);
+             throw new Exception($message);
+        }
+    }
+
+    /**
+     * @Then /^"([^"]*)" element with xpath contains value "([^"]*)"$/
+     */
+    public function elementXpathContainsValue($path, $value)
+    {
+        $session = $this->getSession(); 
+        $page = $session->getPage();
+        $element = $page->find( 'xpath', $session->getSelectorsHandler()->selectorToXpath( 'xpath', $path ) );
+        if ($value === $element->getHTML()) {
+            return;
+        }
+        else {
+             $message = sprintf('The element "%s" does not contain value: "%s"', $path, $element->getHTML());
+             throw new Exception($message);
+        }
+    }
+
+    /**
      * @When /^I click element "([^"]*)"$/
      */
     public function clickElement($cssSelector)
@@ -81,16 +115,4 @@ class FeatureContext extends MinkContext
     {
         sleep($sec);
     }
-
-//
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
 }
